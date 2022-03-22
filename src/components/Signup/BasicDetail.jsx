@@ -12,16 +12,21 @@ const BasicDetails = ({
   const validationSchema = yup.object().shape({
     name: yup
       .string()
+      .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field ")
       .min(3, "Too short")
       .max(25, "Too long")
       .required("Required"),
     email: yup.string().email("Enter a valid email").required("Required"),
     phone: yup
-      .number()
-      .min(6000000000, "Enter valid phone number")
-      .max(9999999999, "Enter valid phone number")
+      .string()
+      .matches(/^[0-9]/, "Enter valid phone number")
+      .length(10)
       .required("Required"),
-    age: yup.number().max(100, "Enter correct age").required("Required"),
+    age: yup
+      .string()
+      .matches(/^[0-9]/, "Enter correct age")
+      .max(2)
+      .required("Required"),
   });
   const formik = useFormik({
     validationSchema: validationSchema,
@@ -100,7 +105,7 @@ const BasicDetails = ({
         <FormLabel>Age</FormLabel>
         <br />
         <TextField
-          type="number"
+          type="text"
           required
           placeholder="Your age"
           name="age"

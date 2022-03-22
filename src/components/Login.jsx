@@ -1,6 +1,6 @@
 import { Box, TextField, FormLabel, Typography, Button } from "@mui/material";
 import { useFormik } from "formik";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { findEmail, getUserDetails } from "../helpers/firebaseActions";
 import bcrypt from "bcryptjs";

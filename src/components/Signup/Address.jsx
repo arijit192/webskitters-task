@@ -10,9 +10,9 @@ const Address = ({ state, city, pincode, updateInfos, handleCurrent }) => {
       .required("Required"),
     city: yup.string().required("Required"),
     pincode: yup
-      .number()
-      .min(100000, "Enter valid pincode")
-      .max(999999, "Enter valid pincode")
+      .string()
+      .matches(/^[0-9]/, "Enter valid pincode")
+      .length(6)
       .required("Required"),
   });
   const formik = useFormik({
@@ -73,7 +73,7 @@ const Address = ({ state, city, pincode, updateInfos, handleCurrent }) => {
         <FormLabel>Pincode</FormLabel>
         <br />
         <TextField
-          type="pincode"
+          type="text"
           required
           placeholder="Your pincode"
           name="pincode"
